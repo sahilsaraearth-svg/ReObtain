@@ -30,7 +30,7 @@ ObtainX is a fork of Obtainium. These are the extra features you get in this for
 
 | | | |
 | ------ | ------ | ------ |
-| <video src="https://github.com/user-attachments/assets/de3c59fe-fae3-4177-bb09-473d16065384" controls muted></video> | <video src="https://github.com/user-attachments/assets/24e726cc-b8cf-40c2-a9fc-b5b0e024300b" controls muted></video> | <video src="https://github.com/user-attachments/assets/3fb396db-0bd3-40e4-a1e9-a250a2c39aa6" controls muted></video> |
+| <video src="https://github.com/user-attachments/assets/de3c59fe-fae3-4177-bb09-473d16065384" width="320" controls muted></video> | <video src="https://github.com/user-attachments/assets/24e726cc-b8cf-40c2-a9fc-b5b0e024300b" width="320" controls muted></video> | <video src="https://github.com/user-attachments/assets/3fb396db-0bd3-40e4-a1e9-a250a2c39aa6" width="320" controls muted></video> |
 
 ## Original Obtainium
 
