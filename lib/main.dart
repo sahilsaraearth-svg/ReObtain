@@ -347,33 +347,39 @@ class _ReObtainState extends State<ReObtain> {
         logs.add('This is the first ever run of ReObtain.');
         // If this is the first run, add ReObtain to the Apps list
         if (!fdroid) {
-          getInstalledInfo(obtainiumId)
-              .then((value) {
-                if (value?.versionName != null) {
-                  appsProvider.saveApps([
-                    App(
-                      obtainiumId,
-                      obtainiumUrl,
-                      'sahilcodex',
-                      'ReObtain',
-                      value!.versionName,
-                      value.versionName!,
-                      [],
-                      0,
-                      {
-                        'versionDetection': true,
-                        'apkFilterRegEx': 'fdroid',
-                        'invertAPKFilter': true,
-                      },
-                      null,
-                      false,
-                    ),
-                  ], onlyIfExists: false);
-                }
-              })
-              .catchError((err) {
-                debugPrint(err.toString());
-              });
+          // Delay self-add by 10 s so the GitHub API has time to index
+          // the release and we avoid a spurious 404 on first launch.
+          Future.delayed(const Duration(seconds: 10), () {
+            getInstalledInfo(obtainiumId)
+                .then((value) {
+                  if (value?.versionName != null) {
+                    appsProvider.saveApps([
+                      App(
+                        obtainiumId,
+                        obtainiumUrl,
+                        'sahilcodex',
+                        'ReObtain',
+                        value!.versionName,
+                        value.versionName!,
+                        [],
+                        0,
+                        {
+                          'versionDetection': true,
+                          'apkFilterRegEx': 'fdroid',
+                          'invertAPKFilter': true,
+                          // Don't run verifyLatestTag — avoids 404 on fresh repos
+                          'verifyLatestTag': false,
+                        },
+                        null,
+                        false,
+                      ),
+                    ], onlyIfExists: false);
+                  }
+                })
+                .catchError((err) {
+                  debugPrint(err.toString());
+                });
+          });
         }
       }
       if (!supportedLocales.map((e) => e.key).contains(context.locale) ||

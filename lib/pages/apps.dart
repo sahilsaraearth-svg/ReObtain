@@ -349,9 +349,12 @@ class _AppListItem extends StatelessWidget {
     );
     if (app == null) return const SizedBox.shrink();
 
-    // Download progress watched independently so only this row rebuilds on ticks.
+    // Download progress + total bytes watched independently so only this row rebuilds on ticks.
     final double? downloadProgress = context.select<AppsProvider, double?>(
       (p) => p.apps[appId]?.downloadProgress,
+    );
+    final int? downloadTotalBytes = context.select<AppsProvider, int?>(
+      (p) => p.apps[appId]?.downloadTotalBytes,
     );
 
     final theme = Theme.of(context);
@@ -666,18 +669,9 @@ class _AppListItem extends StatelessWidget {
           ),
         ),
         trailing: downloadProgress != null
-            ? SizedBox(
-                child: Text(
-                  downloadProgress >= 0
-                      ? tr(
-                          'percentProgress',
-                          args: [downloadProgress.toInt().toString()],
-                        )
-                      : tr('installing'),
-                  textAlign: downloadProgress >= 0
-                      ? TextAlign.start
-                      : TextAlign.end,
-                ),
+            ? _DownloadProgressTrailing(
+                progress: downloadProgress,
+                totalBytes: downloadTotalBytes,
               )
             : trailingRow,
         onTap: onTap,
@@ -710,6 +704,152 @@ Future<void> _openAdditionalOptionsModal(
     context,
     slideUpPageRoute((_) => AdditionalOptionsPage(appId: appId)),
   );
+}
+
+/// Compact download progress widget shown in the trailing slot of a list row.
+/// Shows a thin linear bar + "42% · 18/43 MB" label while downloading,
+/// and an animated pulsing "Installing…" label while the installer is running.
+class _DownloadProgressTrailing extends StatelessWidget {
+  const _DownloadProgressTrailing({
+    required this.progress,
+    required this.totalBytes,
+  });
+
+  final double progress;
+  final int? totalBytes;
+
+  String _mbLabel() {
+    if (totalBytes == null || totalBytes == 0) return '';
+    final total = totalBytes! / 1048576;
+    final done = (progress / 100) * total;
+    return ' · ${done.toStringAsFixed(0)}/${total.toStringAsFixed(0)} MB';
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final isInstalling = progress < 0;
+
+    return SizedBox(
+      width: 110,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          Text(
+            isInstalling
+                ? tr('installing')
+                : '${progress.toInt()}%${_mbLabel()}',
+            style: TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.w600,
+              color: colorScheme.primary,
+            ),
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
+          const SizedBox(height: 4),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(4),
+            child: LinearProgressIndicator(
+              value: isInstalling ? null : progress / 100,
+              minHeight: 4,
+              backgroundColor: colorScheme.primaryContainer,
+              valueColor: AlwaysStoppedAnimation<Color>(colorScheme.primary),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+/// Floating pill shown at the bottom of the apps page while downloads are active.
+class _DownloadPillOverlay extends StatelessWidget {
+  const _DownloadPillOverlay();
+
+  @override
+  Widget build(BuildContext context) {
+    final apps = context.select<AppsProvider, List<AppInMemory>>(
+      (p) => p.apps.values
+          .where((a) => a.downloadProgress != null)
+          .toList(),
+    );
+
+    if (apps.isEmpty) return const SizedBox.shrink();
+
+    final count = apps.length;
+    double totalProgress = 0;
+    for (final a in apps) {
+      totalProgress += (a.downloadProgress ?? 0).clamp(0, 100);
+    }
+    final avgProgress = totalProgress / count;
+    final colorScheme = Theme.of(context).colorScheme;
+
+    return Positioned(
+      bottom: 80,
+      left: 24,
+      right: 24,
+      child: IgnorePointer(
+        child: Material(
+          color: Colors.transparent,
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+            decoration: BoxDecoration(
+              color: colorScheme.primaryContainer,
+              borderRadius: BorderRadius.circular(24),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withValues(alpha: 0.18),
+                  blurRadius: 12,
+                  offset: const Offset(0, 4),
+                ),
+              ],
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Row(
+                  children: [
+                    Icon(Icons.downloading_rounded,
+                        size: 16,
+                        color: colorScheme.onPrimaryContainer),
+                    const SizedBox(width: 6),
+                    Expanded(
+                      child: Text(
+                        'Downloading $count app${count > 1 ? 's' : ''}'
+                        ' · ${avgProgress.toInt()}%',
+                        style: TextStyle(
+                          fontSize: 13,
+                          fontWeight: FontWeight.w600,
+                          color: colorScheme.onPrimaryContainer,
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 6),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(4),
+                  child: LinearProgressIndicator(
+                    value: avgProgress / 100,
+                    minHeight: 4,
+                    backgroundColor:
+                        colorScheme.onPrimaryContainer.withValues(alpha: 0.2),
+                    valueColor: AlwaysStoppedAnimation<Color>(
+                        colorScheme.onPrimaryContainer),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
 }
 
 /// Wraps a list row with horizontal-swipe action hints.
@@ -4191,7 +4331,9 @@ class AppsPageState extends State<AppsPage> {
       },
       child: Scaffold(
         backgroundColor: Theme.of(context).colorScheme.surface,
-        body: Column(
+        body: Stack(
+          children: [
+            Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Expanded(
@@ -4438,6 +4580,10 @@ class AppsPageState extends State<AppsPage> {
                   ),
                 ),
               ),
+          ],
+        ),
+            // ── Floating download pill ──────────────────────────────────────
+            _DownloadPillOverlay(),
           ],
         ),
       ),
