@@ -1,6 +1,6 @@
-import 'package:obtainium/app_sources/github.dart';
-import 'package:obtainium/custom_errors.dart';
-import 'package:obtainium/providers/source_provider.dart';
+import 'package:reobtain/app_sources/github.dart';
+import 'package:reobtain/custom_errors.dart';
+import 'package:reobtain/providers/source_provider.dart';
 
 class Codeberg extends AppSource {
   GitHub gh = GitHub(hostChanged: true);

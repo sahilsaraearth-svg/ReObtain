@@ -10,37 +10,37 @@ import 'package:device_info_plus/device_info_plus.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:html/dom.dart' as html_dom;
 import 'package:http/http.dart';
-import 'package:obtainium/app_sources/apkmirror.dart';
-import 'package:obtainium/app_sources/apkpure.dart';
-import 'package:obtainium/app_sources/aptoide.dart';
-import 'package:obtainium/app_sources/apk4free.dart';
-import 'package:obtainium/app_sources/codeberg.dart';
-import 'package:obtainium/app_sources/coolapk.dart';
-import 'package:obtainium/app_sources/direct_apk_link.dart';
-import 'package:obtainium/app_sources/farsroid.dart';
-import 'package:obtainium/app_sources/fdroid.dart';
-import 'package:obtainium/app_sources/fdroidrepo.dart';
-import 'package:obtainium/app_sources/github.dart';
-import 'package:obtainium/app_sources/gitlab.dart';
-import 'package:obtainium/app_sources/huaweiappgallery.dart';
-import 'package:obtainium/app_sources/izzyondroid.dart';
-import 'package:obtainium/app_sources/html.dart';
-import 'package:obtainium/app_sources/jenkins.dart';
-import 'package:obtainium/app_sources/liteapks.dart';
-import 'package:obtainium/app_sources/neutroncode.dart';
-import 'package:obtainium/app_sources/rockmods.dart';
-import 'package:obtainium/app_sources/rustore.dart';
-import 'package:obtainium/app_sources/sourceforge.dart';
-import 'package:obtainium/app_sources/sourcehut.dart';
-import 'package:obtainium/app_sources/telegramapp.dart';
-import 'package:obtainium/app_sources/tencent.dart';
-import 'package:obtainium/app_sources/uptodown.dart';
-import 'package:obtainium/app_sources/vivoappstore.dart';
-import 'package:obtainium/components/generated_form.dart';
-import 'package:obtainium/custom_errors.dart';
-import 'package:obtainium/mass_app_sources/githubstars.dart';
-import 'package:obtainium/providers/logs_provider.dart';
-import 'package:obtainium/providers/settings_provider.dart';
+import 'package:reobtain/app_sources/apkmirror.dart';
+import 'package:reobtain/app_sources/apkpure.dart';
+import 'package:reobtain/app_sources/aptoide.dart';
+import 'package:reobtain/app_sources/apk4free.dart';
+import 'package:reobtain/app_sources/codeberg.dart';
+import 'package:reobtain/app_sources/coolapk.dart';
+import 'package:reobtain/app_sources/direct_apk_link.dart';
+import 'package:reobtain/app_sources/farsroid.dart';
+import 'package:reobtain/app_sources/fdroid.dart';
+import 'package:reobtain/app_sources/fdroidrepo.dart';
+import 'package:reobtain/app_sources/github.dart';
+import 'package:reobtain/app_sources/gitlab.dart';
+import 'package:reobtain/app_sources/huaweiappgallery.dart';
+import 'package:reobtain/app_sources/izzyondroid.dart';
+import 'package:reobtain/app_sources/html.dart';
+import 'package:reobtain/app_sources/jenkins.dart';
+import 'package:reobtain/app_sources/liteapks.dart';
+import 'package:reobtain/app_sources/neutroncode.dart';
+import 'package:reobtain/app_sources/rockmods.dart';
+import 'package:reobtain/app_sources/rustore.dart';
+import 'package:reobtain/app_sources/sourceforge.dart';
+import 'package:reobtain/app_sources/sourcehut.dart';
+import 'package:reobtain/app_sources/telegramapp.dart';
+import 'package:reobtain/app_sources/tencent.dart';
+import 'package:reobtain/app_sources/uptodown.dart';
+import 'package:reobtain/app_sources/vivoappstore.dart';
+import 'package:reobtain/components/generated_form.dart';
+import 'package:reobtain/custom_errors.dart';
+import 'package:reobtain/mass_app_sources/githubstars.dart';
+import 'package:reobtain/providers/logs_provider.dart';
+import 'package:reobtain/providers/settings_provider.dart';
 
 class AppNames {
   late String author;
@@ -149,7 +149,7 @@ List<MapEntry<String, String>> assumed2DlistToStringMapList(
   List<dynamic> arr,
 ) => arr.map((e) => MapEntry(e[0] as String, e[1] as String)).toList();
 
-// App JSON schema has changed multiple times over the many versions of Obtainium
+// App JSON schema has changed multiple times over the many versions of ReObtain
 // This function takes an App JSON and modifies it if needed to conform to the latest (current) version
 Map<String, dynamic> appJSONCompatibilityModifiers(Map<String, dynamic> json) {
   var source = SourceProvider().getSource(
@@ -866,7 +866,7 @@ abstract class AppSource {
     requestHeaders ??= <String, String>{};
     if (!requestHeaders.containsKey(HttpHeaders.userAgentHeader)) {
       requestHeaders = Map<String, String>.from(requestHeaders)
-        ..[HttpHeaders.userAgentHeader] = 'Obtainium';
+        ..[HttpHeaders.userAgentHeader] = 'ReObtain';
     }
     var streamedResponseUrlWithResponseAndClient =
         await sourceRequestStreamResponse(

@@ -8,25 +8,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_markdown_plus/flutter_markdown_plus.dart';
 import 'package:progress_indicator_m3e/progress_indicator_m3e.dart';
-import 'package:obtainium/components/custom_app_bar.dart';
-import 'package:obtainium/components/generated_form.dart';
-import 'package:obtainium/components/generated_form_modal.dart';
-import 'package:obtainium/custom_errors.dart';
-import 'package:obtainium/main.dart';
-import 'package:obtainium/pages/additional_options_page.dart';
-import 'package:obtainium/pages/page_route_slide_up.dart';
-import 'package:obtainium/pages/app.dart';
-import 'package:obtainium/pages/settings.dart';
-import 'package:obtainium/folders/app_folder.dart';
-import 'package:obtainium/providers/apps_provider.dart';
-import 'package:obtainium/providers/settings_provider.dart';
-import 'package:obtainium/providers/source_provider.dart';
-import 'package:obtainium/services/bulk_import_service.dart';
-import 'package:obtainium/services/bulk_scan_cache.dart';
-import 'package:obtainium/store_source_icons.dart';
-import 'package:obtainium/theme/app_theme_accent.dart';
-import 'package:obtainium/theme/m3e_expressive_list.dart';
-import 'package:obtainium/widgets/help_hint_icon.dart';
+import 'package:reobtain/components/custom_app_bar.dart';
+import 'package:reobtain/components/generated_form.dart';
+import 'package:reobtain/components/generated_form_modal.dart';
+import 'package:reobtain/custom_errors.dart';
+import 'package:reobtain/main.dart';
+import 'package:reobtain/pages/additional_options_page.dart';
+import 'package:reobtain/pages/page_route_slide_up.dart';
+import 'package:reobtain/pages/app.dart';
+import 'package:reobtain/pages/settings.dart';
+import 'package:reobtain/folders/app_folder.dart';
+import 'package:reobtain/providers/apps_provider.dart';
+import 'package:reobtain/providers/settings_provider.dart';
+import 'package:reobtain/providers/source_provider.dart';
+import 'package:reobtain/services/bulk_import_service.dart';
+import 'package:reobtain/services/bulk_scan_cache.dart';
+import 'package:reobtain/store_source_icons.dart';
+import 'package:reobtain/theme/app_theme_accent.dart';
+import 'package:reobtain/theme/m3e_expressive_list.dart';
+import 'package:reobtain/widgets/help_hint_icon.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher_string.dart';
@@ -3531,7 +3531,7 @@ class AppsPageState extends State<AppsPage> {
                       SharePlus.instance.share(
                         ShareParams(
                           text: urls,
-                          subject: 'ObtainX - ${tr('appsString')}',
+                          subject: 'ReObtain - ${tr('appsString')}',
                         ),
                       );
                       Navigator.of(context).pop();
@@ -3549,12 +3549,12 @@ class AppsPageState extends State<AppsPage> {
                             String urls = '';
                             for (var a in selectedApps) {
                               urls +=
-                                  'https://apps.obtainium.imranr.dev/redirect?r=obtainium://app/${Uri.encodeComponent(jsonEncode({'id': a.id, 'url': a.url, 'author': a.author, 'name': a.name, 'preferredApkIndex': a.preferredApkIndex, 'additionalSettings': jsonEncode(a.additionalSettings), 'overrideSource': a.overrideSource}))}\n\n';
+                                  'https://apps.obtainium.imranr.dev/redirect?r=reobtain://app/${Uri.encodeComponent(jsonEncode({'id': a.id, 'url': a.url, 'author': a.author, 'name': a.name, 'preferredApkIndex': a.preferredApkIndex, 'additionalSettings': jsonEncode(a.additionalSettings), 'overrideSource': a.overrideSource}))}\n\n';
                             }
                             SharePlus.instance.share(
                               ShareParams(
                                 text: urls,
-                                subject: 'ObtainX - ${tr('appsString')}',
+                                subject: 'ReObtain - ${tr('appsString')}',
                               ),
                             );
                           },

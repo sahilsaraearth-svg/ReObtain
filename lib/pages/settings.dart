@@ -5,21 +5,21 @@ import 'package:device_info_plus/device_info_plus.dart';
 import 'package:easy_localization/easy_localization.dart' hide TextDirection;
 import 'package:expressive_loading_indicator/expressive_loading_indicator.dart';
 import 'package:flutter/material.dart';
-import 'package:obtainium/widgets/help_hint_icon.dart';
-import 'package:obtainium/components/custom_app_bar.dart';
-import 'package:obtainium/components/themes_settings_section.dart';
-import 'package:obtainium/components/generated_form.dart';
-import 'package:obtainium/components/generated_form_modal.dart';
-import 'package:obtainium/custom_errors.dart';
-import 'package:obtainium/main.dart';
-import 'package:obtainium/providers/apps_provider.dart';
-import 'package:obtainium/providers/installer_provider.dart' as installer;
-import 'package:obtainium/providers/logs_provider.dart';
-import 'package:obtainium/providers/native_provider.dart';
-import 'package:obtainium/providers/settings_provider.dart';
-import 'package:obtainium/providers/source_provider.dart';
-import 'package:obtainium/theme/app_theme_accent.dart';
-import 'package:obtainium/theme/m3e_expressive_list.dart';
+import 'package:reobtain/widgets/help_hint_icon.dart';
+import 'package:reobtain/components/custom_app_bar.dart';
+import 'package:reobtain/components/themes_settings_section.dart';
+import 'package:reobtain/components/generated_form.dart';
+import 'package:reobtain/components/generated_form_modal.dart';
+import 'package:reobtain/custom_errors.dart';
+import 'package:reobtain/main.dart';
+import 'package:reobtain/providers/apps_provider.dart';
+import 'package:reobtain/providers/installer_provider.dart' as installer;
+import 'package:reobtain/providers/logs_provider.dart';
+import 'package:reobtain/providers/native_provider.dart';
+import 'package:reobtain/providers/settings_provider.dart';
+import 'package:reobtain/providers/source_provider.dart';
+import 'package:reobtain/theme/app_theme_accent.dart';
+import 'package:reobtain/theme/m3e_expressive_list.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:shizuku_apk_installer/shizuku_apk_installer.dart';
@@ -1096,7 +1096,7 @@ class _SettingsPageState extends State<SettingsPage> {
                         IconButton(
                           onPressed: () {
                             launchUrlString(
-                              'https://wiki.obtainium.imranr.dev/',
+                              'https://github.com/sahilcodex/ReObtain/blob/main/README.md',
                               mode: LaunchMode.externalApplication,
                             );
                           },
@@ -1249,7 +1249,7 @@ class _LogsDialogState extends State<LogsDialog> {
                                 title: tr('appLogs'),
                                 items: const [],
                                 initValid: true,
-                                message: tr('removeFromObtainX'),
+                                message: tr('removeFromReObtain'),
                               );
                             },
                           )) !=
@@ -1286,7 +1286,7 @@ class _LogsDialogState extends State<LogsDialog> {
                           .toIso8601String()
                           .replaceAll(':', '-');
                       final logFileName =
-                          'obtainx-logs-$timestampForFilename.txt';
+                          'reobtain-logs-$timestampForFilename.txt';
                       final logFile = XFile.fromData(
                         Uint8List.fromList(utf8.encode(logString ?? '')),
                         mimeType: 'text/plain',

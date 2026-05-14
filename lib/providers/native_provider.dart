@@ -5,10 +5,10 @@ import 'package:flutter/services.dart';
 
 class NativeFeatures {
   static const MethodChannel _powerChannel = MethodChannel(
-    'dev.imranr.obtainium/power',
+    'com.sahilcodex.reobtain/power',
   );
   static const MethodChannel _storageChannel = MethodChannel(
-    'dev.imranr.obtainium/storage',
+    'com.sahilcodex.reobtain/storage',
   );
   static bool _systemFontLoaded = false;
 

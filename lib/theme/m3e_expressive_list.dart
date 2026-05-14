@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:obtainium/theme/app_theme_accent.dart';
+import 'package:reobtain/theme/app_theme_accent.dart';
 
 /// Material 3 expressive grouped-list radii and gaps (matches apps tab list).
 const double kM3eOuterRadius = 14.0;

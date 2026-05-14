@@ -1,5 +1,5 @@
-// @author Bikram Agarwal
-package dev.imranr.obtainium
+// @author sahilcodex
+package com.sahilcodex.reobtain
 
 import java.io.File
 

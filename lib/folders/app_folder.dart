@@ -1,5 +1,5 @@
 import 'dart:math';
-import 'package:obtainium/providers/source_provider.dart';
+import 'package:reobtain/providers/source_provider.dart';
 
 enum FolderRuleField { name, author, id, category, source }
 

@@ -1,4 +1,4 @@
-package dev.imranr.obtainium
+package com.sahilcodex.reobtain
 
 import android.app.Activity
 import android.content.BroadcastReceiver
@@ -28,12 +28,12 @@ import java.io.ByteArrayOutputStream
 import java.io.File
 import java.util.UUID
 
-private const val CHANNEL = "dev.imranr.obtainium/installer"
-private const val DEVICE_APPS_CHANNEL = "dev.imranr.obtainium/device_apps"
-private const val POWER_CHANNEL = "dev.imranr.obtainium/power"
-private const val STORAGE_CHANNEL = "dev.imranr.obtainium/storage"
-private const val DOWNLOAD_WAKE_LOCK_TAG = "ObtainX:DownloadWakeLock"
-private const val DOWNLOAD_WIFI_LOCK_TAG = "ObtainX:DownloadWifiLock"
+private const val CHANNEL = "com.sahilcodex.reobtain/installer"
+private const val DEVICE_APPS_CHANNEL = "com.sahilcodex.reobtain/device_apps"
+private const val POWER_CHANNEL = "com.sahilcodex.reobtain/power"
+private const val STORAGE_CHANNEL = "com.sahilcodex.reobtain/storage"
+private const val DOWNLOAD_WAKE_LOCK_TAG = "ReObtain:DownloadWakeLock"
+private const val DOWNLOAD_WIFI_LOCK_TAG = "ReObtain:DownloadWifiLock"
 private const val APK_MIME = "application/vnd.android.package-archive"
 private const val RELEASE_DIR = "releases"
 private const val INSTALL_TIMEOUT_MS = 120_000L

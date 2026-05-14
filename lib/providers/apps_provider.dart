@@ -1,10 +1,10 @@
-// Manages state related to the list of Apps tracked by Obtainium,
+// Manages state related to the list of Apps tracked by ReObtain,
 // Exposes related functions such as those used to add, remove, download, and install Apps.
 
 import 'dart:async';
 import 'dart:convert';
 import 'dart:isolate';
-import 'package:obtainium/app_sources/app_package_formats.dart';
+import 'package:reobtain/app_sources/app_package_formats.dart';
 import 'dart:io';
 import 'dart:math';
 import 'dart:ui';
@@ -23,31 +23,31 @@ import 'package:flutter/foundation.dart' show kDebugMode, listEquals;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/io_client.dart';
-import 'package:obtainium/app_sources/apkmirror.dart' show apkMirrorSizeDebug;
-import 'package:obtainium/app_sources/direct_apk_link.dart';
-import 'package:obtainium/app_sources/html.dart';
-import 'package:obtainium/components/generated_form.dart';
-import 'package:obtainium/components/generated_form_modal.dart';
-import 'package:obtainium/custom_errors.dart';
-import 'package:obtainium/main.dart';
-import 'package:obtainium/providers/native_provider.dart';
-import 'package:obtainium/providers/logs_provider.dart';
-import 'package:obtainium/providers/notifications_provider.dart';
-import 'package:obtainium/providers/settings_provider.dart';
-import 'package:obtainium/services/bulk_import_service.dart';
+import 'package:reobtain/app_sources/apkmirror.dart' show apkMirrorSizeDebug;
+import 'package:reobtain/app_sources/direct_apk_link.dart';
+import 'package:reobtain/app_sources/html.dart';
+import 'package:reobtain/components/generated_form.dart';
+import 'package:reobtain/components/generated_form_modal.dart';
+import 'package:reobtain/custom_errors.dart';
+import 'package:reobtain/main.dart';
+import 'package:reobtain/providers/native_provider.dart';
+import 'package:reobtain/providers/logs_provider.dart';
+import 'package:reobtain/providers/notifications_provider.dart';
+import 'package:reobtain/providers/settings_provider.dart';
+import 'package:reobtain/services/bulk_import_service.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter_fgbg/flutter_fgbg.dart';
-import 'package:obtainium/providers/source_provider.dart';
+import 'package:reobtain/providers/source_provider.dart';
 import 'package:http/http.dart';
 import 'package:android_intent_plus/android_intent.dart';
 import 'package:flutter_archive/flutter_archive.dart';
-import 'package:obtainium/providers/installer_provider.dart' as installer;
+import 'package:reobtain/providers/installer_provider.dart' as installer;
 import 'package:share_plus/share_plus.dart';
 import 'package:shared_storage/shared_storage.dart' as saf;
 import 'package:shizuku_apk_installer/shizuku_apk_installer.dart';
-import 'package:obtainium/folders/app_folder.dart';
+import 'package:reobtain/folders/app_folder.dart';
 
 final pm = AndroidPackageManager();
 final packageInfoFlags = PackageInfoFlags({PMFlag.getSigningCertificates});
@@ -1080,11 +1080,11 @@ class RemoveAppsWithModalResult {
 
   final bool confirmed;
 
-  /// When non-empty, those apps were removed from the UI and Obtainium data is
+  /// When non-empty, those apps were removed from the UI and ReObtain data is
   /// deleted after 5 seconds unless [AppsProvider.undoDeferredObtainiumRemovals] runs.
   final Set<String> deferredUndoAppIds;
 
-  /// True when [removeApps] ran in the same step (remove from Obtainium + uninstall).
+  /// True when [removeApps] ran in the same step (remove from ReObtain + uninstall).
   final bool removedFromObtainiumImmediately;
 
   /// True when the app should disappear from the list (deferred or immediate).
@@ -1097,7 +1097,7 @@ class RemoveAppsWithModalResult {
 class AppsProvider with ChangeNotifier {
   // Start fast on capable devices, but keep a bounded worker pool so a large
   // app list does not fan out unbounded HTTP + parse work like upstream
-  // Obtainium. [_maxParallelUpdateChecksForDevice] lowers this on low-end
+  // ReObtain. [_maxParallelUpdateChecksForDevice] lowers this on low-end
   // devices using Android's low-RAM flag and total physical RAM.
   static const int _defaultParallelUpdateChecks = 8;
   static const int _modestDeviceParallelUpdateChecks = 4;
@@ -1130,7 +1130,7 @@ class AppsProvider with ChangeNotifier {
   Timer? _autoExportTimer;
   static const Duration _autoExportDebounce = Duration(seconds: 2);
 
-  /// Remove-from-Obtainium was confirmed without uninstall: JSON is stashed, UI updates,
+  /// Remove-from-ReObtain was confirmed without uninstall: JSON is stashed, UI updates,
   /// and disk is purged after 5s unless the user undoes.
   final Map<String, Timer> _deferredObtainiumTimers = {};
   final Map<String, AppInMemory> _deferredObtainiumSnapshots = {};
@@ -2182,7 +2182,7 @@ class AppsProvider with ChangeNotifier {
     MultiAppMultiError errors = MultiAppMultiError();
     List<String> installedIds = [];
 
-    // Move Obtainium to the end of the line (let all other apps update first)
+    // Move ReObtain to the end of the line (let all other apps update first)
     appsToInstall = moveStrToEnd(
       appsToInstall,
       obtainiumId,
@@ -3372,7 +3372,7 @@ class AppsProvider with ChangeNotifier {
                   [
                     GeneratedFormSwitch(
                       'rmAppEntry',
-                      label: tr('removeFromObtainX'),
+                      label: tr('removeFromReObtain'),
                       defaultValue: true,
                     ),
                   ],

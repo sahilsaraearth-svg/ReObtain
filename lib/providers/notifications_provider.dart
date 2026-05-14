@@ -4,9 +4,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:obtainium/main.dart';
-import 'package:obtainium/providers/settings_provider.dart';
-import 'package:obtainium/providers/source_provider.dart';
+import 'package:reobtain/main.dart';
+import 'package:reobtain/providers/settings_provider.dart';
+import 'package:reobtain/providers/source_provider.dart';
 
 class ObtainiumNotification {
   late int id;

@@ -1,8 +1,8 @@
 import 'dart:ui' show ImageFilter;
 
 import 'package:flutter/material.dart';
-import 'package:obtainium/providers/settings_provider.dart';
-import 'package:obtainium/theme/app_theme_accent.dart';
+import 'package:reobtain/providers/settings_provider.dart';
+import 'package:reobtain/theme/app_theme_accent.dart';
 
 /// Full height of the collapsed app bar: status-bar inset + toolbar.
 double progressiveBlurHeaderHeight(BuildContext context) {

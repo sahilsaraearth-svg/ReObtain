@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:obtainium/components/generated_form.dart';
-import 'package:obtainium/providers/source_provider.dart';
+import 'package:reobtain/components/generated_form.dart';
+import 'package:reobtain/providers/source_provider.dart';
 
 typedef RegexAssistRawVersionResolver =
     Future<String?> Function(Map<String, dynamic> currentValues);

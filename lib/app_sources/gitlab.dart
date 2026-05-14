@@ -1,14 +1,14 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:obtainium/app_sources/app_package_formats.dart';
+import 'package:reobtain/app_sources/app_package_formats.dart';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
-import 'package:obtainium/app_sources/github.dart';
-import 'package:obtainium/custom_errors.dart';
-import 'package:obtainium/providers/settings_provider.dart';
-import 'package:obtainium/providers/source_provider.dart';
-import 'package:obtainium/components/generated_form.dart';
+import 'package:reobtain/app_sources/github.dart';
+import 'package:reobtain/custom_errors.dart';
+import 'package:reobtain/providers/settings_provider.dart';
+import 'package:reobtain/providers/source_provider.dart';
+import 'package:reobtain/components/generated_form.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 

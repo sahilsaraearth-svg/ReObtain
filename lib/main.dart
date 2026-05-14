@@ -2,16 +2,16 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:obtainium/pages/home.dart';
-import 'package:obtainium/theme/app_segmented_button_theme.dart';
-import 'package:obtainium/theme/app_theme_accent.dart';
-import 'package:obtainium/theme/app_switch_theme.dart';
-import 'package:obtainium/providers/apps_provider.dart';
-import 'package:obtainium/providers/logs_provider.dart';
-import 'package:obtainium/providers/native_provider.dart';
-import 'package:obtainium/providers/notifications_provider.dart';
-import 'package:obtainium/providers/settings_provider.dart';
-import 'package:obtainium/providers/source_provider.dart';
+import 'package:reobtain/pages/home.dart';
+import 'package:reobtain/theme/app_segmented_button_theme.dart';
+import 'package:reobtain/theme/app_theme_accent.dart';
+import 'package:reobtain/theme/app_switch_theme.dart';
+import 'package:reobtain/providers/apps_provider.dart';
+import 'package:reobtain/providers/logs_provider.dart';
+import 'package:reobtain/providers/native_provider.dart';
+import 'package:reobtain/providers/notifications_provider.dart';
+import 'package:reobtain/providers/settings_provider.dart';
+import 'package:reobtain/providers/source_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:device_info_plus/device_info_plus.dart';
@@ -174,21 +174,21 @@ void main() async {
         path: localeDir,
         fallbackLocale: fallbackLocale,
         useOnlyLangCode: false,
-        child: const Obtainium(),
+        child: const ReObtain(),
       ),
     ),
   );
   BackgroundFetch.registerHeadlessTask(backgroundFetchHeadlessTask);
 }
 
-class Obtainium extends StatefulWidget {
-  const Obtainium({super.key});
+class ReObtain extends StatefulWidget {
+  const ReObtain({super.key});
 
   @override
-  State<Obtainium> createState() => _ObtainiumState();
+  State<ReObtain> createState() => _ReObtainState();
 }
 
-class _ObtainiumState extends State<Obtainium> {
+class _ReObtainState extends State<ReObtain> {
   var existingUpdateInterval = -1;
 
   @override
@@ -249,7 +249,7 @@ class _ObtainiumState extends State<Obtainium> {
         notificationTitle: tr('foregroundService'),
         notificationText: tr('fgServiceNotice'),
         notificationIcon: const NotificationIcon(
-          metaDataName: 'dev.imranr.obtainium.service.NOTIFICATION_ICON',
+          metaDataName: 'com.sahilcodex.reobtain.service.NOTIFICATION_ICON',
         ),
         callback: startCallback,
       );
@@ -344,8 +344,8 @@ class _ObtainiumState extends State<Obtainium> {
     } else {
       bool isFirstRun = settingsProvider.checkAndFlipFirstRun();
       if (isFirstRun) {
-        logs.add('This is the first ever run of ObtainX.');
-        // If this is the first run, add ObtainX to the Apps list
+        logs.add('This is the first ever run of ReObtain.');
+        // If this is the first run, add ReObtain to the Apps list
         if (!fdroid) {
           getInstalledInfo(obtainiumId)
               .then((value) {
@@ -354,8 +354,8 @@ class _ObtainiumState extends State<Obtainium> {
                     App(
                       obtainiumId,
                       obtainiumUrl,
-                      'Bikram-Agarwal',
-                      'ObtainX',
+                      'sahilcodex',
+                      'ReObtain',
                       value!.versionName,
                       value.versionName!,
                       [],
@@ -508,7 +508,7 @@ class _ObtainiumState extends State<Obtainium> {
           }
 
           return MaterialApp(
-            title: 'ObtainX',
+            title: 'ReObtain',
             localizationsDelegates: context.localizationDelegates,
             supportedLocales: context.supportedLocales,
             locale: context.locale,

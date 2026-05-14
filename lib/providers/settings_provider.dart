@@ -5,21 +5,21 @@ import 'dart:convert';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:obtainium/app_sources/github.dart';
-import 'package:obtainium/main.dart';
-import 'package:obtainium/providers/apps_provider.dart';
-import 'package:obtainium/folders/app_folder.dart';
-import 'package:obtainium/providers/native_provider.dart';
-import 'package:obtainium/providers/source_provider.dart';
-import 'package:obtainium/theme/app_theme_accent.dart';
+import 'package:reobtain/app_sources/github.dart';
+import 'package:reobtain/main.dart';
+import 'package:reobtain/providers/apps_provider.dart';
+import 'package:reobtain/folders/app_folder.dart';
+import 'package:reobtain/providers/native_provider.dart';
+import 'package:reobtain/providers/source_provider.dart';
+import 'package:reobtain/theme/app_theme_accent.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shared_storage/shared_storage.dart' as saf;
 
-String obtainiumTempId = 'bikram-agarwal_ObtainX_${GitHub().hosts[0]}';
-String obtainiumId = 'dev.bikram.obtainx';
-String obtainiumUrl = 'https://github.com/bikram-agarwal/ObtainX';
+String obtainiumTempId = 'sahilcodex_ReObtain_${GitHub().hosts[0]}';
+String obtainiumId = 'com.sahilcodex.reobtain';
+String obtainiumUrl = 'https://github.com/sahilsaraearth-svg/ReObtain';
 Color obtainiumThemeColor = const Color(0xFF6438B5);
 
 enum ThemeSettings { system, light, dark }
@@ -65,7 +65,7 @@ class SettingsProvider with ChangeNotifier {
   /// Mirrors last [setCategories] write; [getString] can lag [setString] briefly.
   Map<String, int>? _categoriesMemory;
 
-  String sourceUrl = 'https://github.com/bikram-agarwal/ObtainX';
+  String sourceUrl = 'https://github.com/sahilsaraearth-svg/ReObtain';
 
   // Not done in constructor as we want to be able to await it
   Future<void> initializeSettings() async {
@@ -135,7 +135,7 @@ class SettingsProvider with ChangeNotifier {
 
   /// v1: [SwipeAction.none] was index 6 on the 7-value enum. v2 remaps that to index 7.
   /// v3 clears stored swipe name prefs once so they are rebuilt from ints (fixes stale
-  /// [rightSwipeActionName] / [leftSwipeActionName] from older ObtainX builds).
+  /// [rightSwipeActionName] / [leftSwipeActionName] from older ReObtain builds).
   void _migrateSwipeActionPrefs() {
     if (prefs == null) return;
     int schemaVersion = prefs!.getInt('swipeActionEnumVersion') ?? 0;

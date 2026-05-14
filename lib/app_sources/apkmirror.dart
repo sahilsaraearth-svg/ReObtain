@@ -3,13 +3,13 @@ import 'dart:io';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:html/dom.dart' as html_dom;
 import 'package:http/http.dart';
-import 'package:obtainium/components/generated_form.dart';
-import 'package:obtainium/custom_errors.dart';
-import 'package:obtainium/providers/apps_provider.dart';
-import 'package:obtainium/providers/logs_provider.dart';
-import 'package:obtainium/providers/settings_provider.dart';
-import 'package:obtainium/providers/source_provider.dart';
-import 'package:obtainium/services/html_parse_isolate.dart';
+import 'package:reobtain/components/generated_form.dart';
+import 'package:reobtain/custom_errors.dart';
+import 'package:reobtain/providers/apps_provider.dart';
+import 'package:reobtain/providers/logs_provider.dart';
+import 'package:reobtain/providers/settings_provider.dart';
+import 'package:reobtain/providers/source_provider.dart';
+import 'package:reobtain/services/html_parse_isolate.dart';
 
 /// Single consolidated debug-logging flag for the APKMirror size code path.
 ///
@@ -451,7 +451,7 @@ class APKMirror extends AppSource {
   }) async {
     return {
       'User-Agent':
-          'Mozilla/5.0 (Linux; Android 15; Mobile) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Mobile Safari/537.36 ObtainX/${(await getInstalledInfo(obtainiumId))?.versionName ?? '1.0.0'}',
+          'Mozilla/5.0 (Linux; Android 15; Mobile) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Mobile Safari/537.36 ReObtain/${(await getInstalledInfo(obtainiumId))?.versionName ?? '1.0.0'}',
       'Accept':
           'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
       'Accept-Language': 'en-US,en;q=0.9',

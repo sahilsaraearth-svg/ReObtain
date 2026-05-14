@@ -1,5 +1,5 @@
-// @author Bikram Agarwal
-package dev.imranr.obtainium
+// @author sahilcodex
+package com.sahilcodex.reobtain
 
 import android.content.ContentProvider
 import android.content.ContentValues

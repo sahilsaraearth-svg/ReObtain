@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:obtainium/components/bulk_add_widget.dart';
+import 'package:reobtain/components/bulk_add_widget.dart';
 
 /// Standalone page wrapper around [BulkAddWidget].
 ///

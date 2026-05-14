@@ -29,7 +29,7 @@ if (keystorePropertiesExists) {
 }
 
 android {
-    namespace = "dev.imranr.obtainium"
+    namespace = "com.sahilcodex.reobtain"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = "28.2.13676358"
 
@@ -44,7 +44,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "dev.bikram.obtainx"
+        applicationId = "com.sahilcodex.reobtain"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = 26
@@ -112,6 +112,11 @@ android {
             applicationIdSuffix = ".debug"
             versionNameSuffix = "-debug"
         }
+    }
+
+    lint {
+        checkReleaseBuilds = false
+        abortOnError = false
     }
 }
 

@@ -1,11 +1,11 @@
 import 'dart:convert';
 
 import 'package:easy_localization/easy_localization.dart';
-import 'package:obtainium/app_sources/html.dart';
-import 'package:obtainium/components/generated_form.dart';
-import 'package:obtainium/custom_errors.dart';
-import 'package:obtainium/providers/source_provider.dart';
-import 'package:obtainium/services/html_parse_isolate.dart';
+import 'package:reobtain/app_sources/html.dart';
+import 'package:reobtain/components/generated_form.dart';
+import 'package:reobtain/custom_errors.dart';
+import 'package:reobtain/providers/source_provider.dart';
+import 'package:reobtain/services/html_parse_isolate.dart';
 
 class Farsroid extends AppSource {
   Farsroid() {

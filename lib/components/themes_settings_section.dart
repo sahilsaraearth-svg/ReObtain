@@ -1,10 +1,10 @@
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:obtainium/components/theme_accent_settings_section.dart'
+import 'package:reobtain/components/theme_accent_settings_section.dart'
     show buildThemeAccentSettingsCardItems;
-import 'package:obtainium/providers/settings_provider.dart';
-import 'package:obtainium/widgets/help_hint_icon.dart';
+import 'package:reobtain/providers/settings_provider.dart';
+import 'package:reobtain/widgets/help_hint_icon.dart';
 import 'package:provider/provider.dart';
 
 enum _ThemeBrightnessSegment { system, light, dark, black }

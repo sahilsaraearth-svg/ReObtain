@@ -2,10 +2,10 @@ import 'dart:io' show HttpHeaders;
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:http/http.dart' show Response;
-import 'package:obtainium/app_sources/fdroid.dart';
-import 'package:obtainium/app_sources/fdroidrepo.dart';
-import 'package:obtainium/custom_errors.dart';
-import 'package:obtainium/providers/source_provider.dart';
+import 'package:reobtain/app_sources/fdroid.dart';
+import 'package:reobtain/app_sources/fdroidrepo.dart';
+import 'package:reobtain/custom_errors.dart';
+import 'package:reobtain/providers/source_provider.dart';
 
 class IzzyOnDroid extends AppSource {
   late FDroid fd;

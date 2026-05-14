@@ -5,17 +5,17 @@ import 'package:app_links/app_links.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:obtainium/components/generated_form_modal.dart';
-import 'package:obtainium/custom_errors.dart';
-import 'package:obtainium/pages/add_app.dart';
-import 'package:obtainium/pages/apps.dart';
-import 'package:obtainium/pages/import_export.dart';
-import 'package:obtainium/pages/settings.dart';
-import 'package:obtainium/providers/apps_provider.dart';
-import 'package:obtainium/providers/settings_provider.dart';
-import 'package:obtainium/providers/source_provider.dart';
-import 'package:obtainium/theme/app_theme_accent.dart';
-import 'package:obtainium/widgets/progressive_top_edge_overlay.dart';
+import 'package:reobtain/components/generated_form_modal.dart';
+import 'package:reobtain/custom_errors.dart';
+import 'package:reobtain/pages/add_app.dart';
+import 'package:reobtain/pages/apps.dart';
+import 'package:reobtain/pages/import_export.dart';
+import 'package:reobtain/pages/settings.dart';
+import 'package:reobtain/providers/apps_provider.dart';
+import 'package:reobtain/providers/settings_provider.dart';
+import 'package:reobtain/providers/source_provider.dart';
+import 'package:reobtain/theme/app_theme_accent.dart';
+import 'package:reobtain/widgets/progressive_top_edge_overlay.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
@@ -84,12 +84,12 @@ class _HomePageState extends State<HomePage> {
                   InkWell(
                     onTap: () {
                       launchUrlString(
-                        'https://github.com/bikram-agarwal/ObtainX/blob/main/README.md',
+                        'https://github.com/sahilsaraearth-svg/ReObtain/blob/main/README.md',
                         mode: LaunchMode.externalApplication,
                       );
                     },
                     child: const Text(
-                      'https://github.com/bikram-agarwal/ObtainX/blob/main/README.md',
+                      'https://github.com/sahilsaraearth-svg/ReObtain/blob/main/README.md',
                       style: TextStyle(
                         decoration: TextDecoration.underline,
                         fontWeight: FontWeight.bold,

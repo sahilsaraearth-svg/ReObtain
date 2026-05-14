@@ -1,8 +1,8 @@
 import 'package:http/http.dart';
-import 'package:obtainium/app_sources/github.dart';
-import 'package:obtainium/custom_errors.dart';
-import 'package:obtainium/providers/source_provider.dart';
-import 'package:obtainium/services/html_parse_isolate.dart';
+import 'package:reobtain/app_sources/github.dart';
+import 'package:reobtain/custom_errors.dart';
+import 'package:reobtain/providers/source_provider.dart';
+import 'package:reobtain/services/html_parse_isolate.dart';
 
 class Mullvad extends AppSource {
   Mullvad() {

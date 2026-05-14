@@ -1,8 +1,8 @@
-// @author Bikram Agarwal
+// @author sahilcodex
 import 'dart:io';
 import 'package:flutter/services.dart';
 
-const _channel = MethodChannel('dev.imranr.obtainium/installer');
+const _channel = MethodChannel('com.sahilcodex.reobtain/installer');
 
 class InstallerAppInfo {
   final String packageName;

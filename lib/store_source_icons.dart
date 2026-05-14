@@ -1,6 +1,6 @@
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
-import 'package:obtainium/favicon_cache.dart';
+import 'package:reobtain/favicon_cache.dart';
 
 /// Inversion filter: swaps black ↔ white while preserving alpha.
 const ColorFilter invertColorFilter = ColorFilter.matrix([

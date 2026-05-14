@@ -1,8 +1,8 @@
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
-import 'package:obtainium/theme/app_segmented_button_theme.dart';
-import 'package:obtainium/theme/app_switch_theme.dart';
+import 'package:reobtain/theme/app_segmented_button_theme.dart';
+import 'package:reobtain/theme/app_switch_theme.dart';
 
 /// Surfaces from [ColorScheme.fromImageProvider] are often very dark in dark mode;
 /// blend them toward [ColorScheme.primary] so the hue reads clearly on the app page.

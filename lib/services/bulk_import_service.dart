@@ -11,13 +11,13 @@ import 'package:html/dom.dart' as html_dom;
 import 'package:html/parser.dart' show parse;
 import 'package:http/http.dart' as http;
 import 'package:http/io_client.dart';
-import 'package:obtainium/app_sources/github.dart';
-import 'package:obtainium/providers/settings_provider.dart';
+import 'package:reobtain/app_sources/github.dart';
+import 'package:reobtain/providers/settings_provider.dart';
 
 const int _flagSystem = 1; // ApplicationInfo.FLAG_SYSTEM = 0x1
 const int _flagUpdatedSystemApp =
     128; // ApplicationInfo.FLAG_UPDATED_SYSTEM_APP = 0x80
-const _deviceAppsChannel = MethodChannel('dev.imranr.obtainium/device_apps');
+const _deviceAppsChannel = MethodChannel('com.sahilcodex.reobtain/device_apps');
 
 class InstalledAppInfo {
   final String packageName;
@@ -517,7 +517,7 @@ class BulkImportService {
         final http.Response response = await client
             .get(
               Uri.parse('https://f-droid.org/api/v1/packages/$pkg'),
-              headers: {'User-Agent': 'ObtainX/1.4.0'},
+              headers: {'User-Agent': 'ReObtain/1.4.0'},
             )
             .timeout(const Duration(seconds: 10));
         if (response.statusCode == 200) {
@@ -798,7 +798,7 @@ class BulkImportService {
     final GitHub githubSource = GitHub();
     final Map<String, String> headers = <String, String>{
       'Accept': 'application/vnd.github.v3+json',
-      'User-Agent': 'ObtainX-BulkImport',
+      'User-Agent': 'ReObtain-BulkImport',
     };
     final Map<String, String>? authHeaders = await githubSource
         .getRequestHeaders(
